@@ -1,14 +1,17 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
 import HelloWorld from './components/HelloWorld.vue'
+
 import { getHomeData } from './api'
-getHomeData({name:'nih'}).then((res) => {
+getHomeData({ name: 'nih' }).then((res) => {
   console.log(res)
 })
+
+
 </script>
 
 <template>
-  <header>
+  <!-- <header>
     <img alt="Vue logo"
          class="logo"
          src="@/assets/logo.svg"
@@ -20,11 +23,19 @@ getHomeData({name:'nih'}).then((res) => {
       <nav>
         <RouterLink to="/">Home</RouterLink>
         <RouterLink to="/about">About</RouterLink>
+        <RouterLink to="/testkeep">testkeep</RouterLink>
       </nav>
     </div>
-  </header>
+  </header> -->
+  <router-view v-slot="{ Component }">
+    <keep-alive>
+      <component v-if="$route.meta.keepAlive"
+                 :is="Component" />
+    </keep-alive>
+    <component v-if="!$route.meta.keepAlive"
+               :is="Component" />
+  </router-view>
 
-  <RouterView />
 </template>
 
 <style scoped lang="less">
@@ -88,7 +99,6 @@ nav a:first-of-type {
     text-align: left;
     margin-left: -1rem;
     font-size: 1rem;
-
     padding: 1rem 0;
     margin-top: 1rem;
   }

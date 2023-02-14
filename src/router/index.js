@@ -7,7 +7,10 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
-      component: HomeView
+      component: HomeView,
+      meta: {
+        keepAlive: true
+      }
     },
     {
       path: '/about',
@@ -15,7 +18,30 @@ const router = createRouter({
       // route level code-splitting
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () => import('../views/AboutView.vue')
+      component: () => import('../views/AboutView.vue'),
+      meta: {
+      }
+    },
+    {
+      path: '/testkeep',
+      name: 'testkeep',
+      component: () => import('../views/TestKeep.vue'),
+      meta: {
+      }
+    },
+    {
+      path: '/pdftoimg',
+      name: 'pdftoimg',
+      component: () => import('../views/PdfToImg.vue'),
+      meta: {
+      }
+    },
+    {
+      path: '/pdfh5',
+      name: 'pdfh5',
+      component: () => import('../views/PdfH5.vue'),
+      meta: {
+      }
     }
   ]
 })

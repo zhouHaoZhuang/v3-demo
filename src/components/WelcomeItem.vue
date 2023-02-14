@@ -11,6 +11,10 @@
     </div>
   </div>
 </template>
+<script setup>
+console.log('缓存  WelcomeItem');
+
+</script>
 
 <style scoped>
 .item {
