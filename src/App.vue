@@ -1,12 +1,17 @@
 <script setup>
-import { RouterLink, RouterView } from 'vue-router'
+import { RouterLink, RouterView, useRoute, useLink } from 'vue-router'
 import HelloWorld from './components/HelloWorld.vue'
 
-import { getHomeData } from './api'
-getHomeData({ name: 'nih' }).then((res) => {
-  console.log(res)
-})
+import apis from '@/api'
 
+console.log(apis.ansu);
+
+apis.ansu.getHomeData({ name: 'nih' }).then((res) => {
+  console.log(res, '得到的数据')
+})
+// 包含 `to` 和任何其他可以传递给 <router-link> 的 prop
+const link = useLink({ to: '/testkeep' })
+console.log(link, 'kkk');
 
 </script>
 

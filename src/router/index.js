@@ -42,6 +42,13 @@ const router = createRouter({
       component: () => import('../views/PdfH5.vue'),
       meta: {
       }
+    },
+    {
+      path: '/touchpage',
+      name: 'touchpage',
+      component: () => import('../views/Touchpage.vue'),
+      meta: {
+      }
     }
   ]
 })
