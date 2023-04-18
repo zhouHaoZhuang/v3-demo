@@ -7,13 +7,18 @@ import { VantResolver } from 'unplugin-vue-components/resolvers';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [vue(
-    {
-      reactivityTransform: true, // 主要是开启这个，就能使用语法糖了 $ref 不加value
-    }
-  ), Components({
-    resolvers: [VantResolver()],
-  }),],
+  plugins: [
+    vue(
+      {
+        reactivityTransform: true, // 主要是开启这个，就能使用语法糖了 $ref 不加value
+      }
+    ),
+    Components(
+      {
+        resolvers: [VantResolver()],
+      }
+    )
+  ],
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
