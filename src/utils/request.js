@@ -1,8 +1,8 @@
 import axios from 'axios'
 
-let baseURL = '/'
+export const BASEURL = '/'
 let request = axios.create({
-  baseURL,
+  baseURL: BASEURL,
   timeout: 1000,
   headers: {
     'Content-Type': 'application/json',

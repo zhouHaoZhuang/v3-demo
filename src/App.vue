@@ -1,8 +1,9 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
 import apis from './api'
+import imgs from '@/assets/img/index.js'
 
+console.log('imgs',imgs)
 function getHomeTheme(params) {
   apis.ansu.getHomeTheme({ name: 'nih' }).then((res) => {
     console.log(res)
@@ -12,19 +13,15 @@ function getHomeTheme(params) {
 
 <template>
   <header>
-    <!-- <img alt="Vue logo"
-         class="logo"
-         src="@/assets/logo.svg"
-         width="125"
-         height="125" /> -->
     <div class="wrapper">
-      <!-- <HelloWorld msg="You did it!" /> -->
+      <Img :src="imgs.user.userindex"></Img>
       <van-button type="primary">主要按钮</van-button>
+      <Button>asdasd</Button>
       <h1 class="title">你好</h1>
-      <!-- <nav>
+      <nav>
         <RouterLink to="/">Home</RouterLink>
         <RouterLink to="/about">About</RouterLink>
-      </nav> -->
+      </nav>
     </div>
   </header>
 
