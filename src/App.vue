@@ -2,8 +2,10 @@
 import { RouterLink, RouterView } from 'vue-router'
 import apis from './api'
 import imgs from '@/assets/img/index.js'
+import webImgs from '@/assets/webImg'
 
-console.log('imgs',imgs)
+console.log('imgs', imgs)
+console.log('webImgs', webImgs)
 function getHomeTheme(params) {
   apis.ansu.getHomeTheme({ name: 'nih' }).then((res) => {
     console.log(res)
@@ -14,7 +16,12 @@ function getHomeTheme(params) {
 <template>
   <header>
     <div class="wrapper">
-      <Img :src="imgs.user.userindex"></Img>
+      <div class="local-img">
+        <Img :src="imgs.user.userindex"></Img>
+      </div>
+      <div class="webimg">
+        <Img :src="webImgs.yinxin.demotopbg"></Img>
+      </div>
       <van-button type="primary">主要按钮</van-button>
       <Button>asdasd</Button>
       <h1 class="title">你好</h1>
@@ -29,72 +36,8 @@ function getHomeTheme(params) {
 </template>
 
 <style scoped lang="less">
-header {
-  line-height: 1.5;
-  max-height: 100vh;
-}
-.title {
-  font-size: 15px;
-}
-
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-nav {
-  width: 100%;
-  font-size: 12px;
-  text-align: center;
-  margin-top: 2rem;
-  a {
-    color: #000;
-  }
-}
-nav a.router-link-exact-active {
-  /* color: var(--color-text);
-   */
-  color: red;
-}
-
-nav a.router-link-exact-active:hover {
-  background-color: transparent;
-}
-
-nav a {
-  display: inline-block;
-  padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
-}
-
-nav a:first-of-type {
-  border: 0;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-
-  nav {
-    text-align: left;
-    margin-left: -1rem;
-    font-size: 1rem;
-
-    padding: 1rem 0;
-    margin-top: 1rem;
-  }
+.local-img,
+.webimg {
+  width: 200px;
 }
 </style>
