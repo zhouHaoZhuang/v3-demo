@@ -19,6 +19,8 @@ function clickLoading () {
     aLoading()
   }, 2000);
 }
+
+console.log('缓存  home');
 </script>
 
 <template>

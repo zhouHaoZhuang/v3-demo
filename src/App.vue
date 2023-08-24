@@ -5,6 +5,10 @@ import Meting from './components/Meting/index.vue'
 import { ref, nextTick } from 'vue'
 import apis from '@/api'
 import routers from '@/router/config.js'
+import { getHomeData } from './api'
+getHomeData({ name: 'nih' }).then((res) => {
+  console.log(res)
+})
 
 const top = ref(0)
 const left = ref(0)
@@ -94,23 +98,31 @@ nextTick(() => {
         <component v-if="!$route.meta.keepAlive" :is="Component" />
       </router-view>
     </div>
-    <!-- <header>
-    <img alt="Vue logo"
-         class="logo"
-         src="@/assets/logo.svg"
-         width="125"
-         height="125" />
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
+    <header>
+      <img
+        alt="Vue logo"
+        class="logo"
+        src="@/assets/logo.svg"
+        width="125"
+        height="125"
+      />
+      <div class="wrapper">
+        <HelloWorld msg="You did it!" />
 
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-        <RouterLink to="/testkeep">testkeep</RouterLink>
-      </nav>
-    </div>
-  </header> -->
+        <nav>
+          <RouterLink to="/">Home</RouterLink>
+          <RouterLink to="/about">About</RouterLink>
+          <RouterLink to="/testkeep">testkeep</RouterLink>
+        </nav>
+      </div>
+    </header>
   </div>
+  <router-view v-slot="{ Component }">
+    <keep-alive>
+      <component v-if="$route.meta.keepAlive" :is="Component" />
+    </keep-alive>
+    <component v-if="!$route.meta.keepAlive" :is="Component" />
+  </router-view>
 </template>
 
 <style scoped lang="less">
@@ -263,5 +275,12 @@ nav a:first-of-type {
   //   padding: 1rem 0;
   //   margin-top: 1rem;
   // }
+  nav {
+    text-align: left;
+    margin-left: -1rem;
+    font-size: 1rem;
+    padding: 1rem 0;
+    margin-top: 1rem;
+  }
 }
 </style>
