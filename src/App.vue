@@ -1,36 +1,43 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
 import HelloWorld from './components/HelloWorld.vue'
-import { getHomeData } from './api'
-getHomeData({name:'nih'}).then((res) => {
-  console.log(res)
-})
+import apis from './api'
+
+function getHomeTheme(params) {
+  apis.ansu.getHomeTheme({ name: 'nih' }).then((res) => {
+    console.log(res)
+  })
+}
 </script>
 
 <template>
   <header>
-    <img alt="Vue logo"
+    <!-- <img alt="Vue logo"
          class="logo"
          src="@/assets/logo.svg"
          width="125"
-         height="125" />
+         height="125" /> -->
     <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-
-      <nav>
+      <!-- <HelloWorld msg="You did it!" /> -->
+      <van-button type="primary">主要按钮</van-button>
+      <h1 class="title">你好</h1>
+      <!-- <nav>
         <RouterLink to="/">Home</RouterLink>
         <RouterLink to="/about">About</RouterLink>
-      </nav>
+      </nav> -->
     </div>
   </header>
 
-  <RouterView />
+  <!-- <RouterView /> -->
 </template>
 
 <style scoped lang="less">
 header {
   line-height: 1.5;
   max-height: 100vh;
+}
+.title {
+  font-size: 15px;
 }
 
 .logo {

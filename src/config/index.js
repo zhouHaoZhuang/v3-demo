@@ -1,0 +1,1 @@
+export const AMAPKEY = '940dc688a0a47d49b9cc9aa5c9945171'
