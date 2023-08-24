@@ -7,6 +7,7 @@ import { VantResolver } from 'unplugin-vue-components/resolvers';
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  // base: '/app/web/',
   plugins: [
     vue(
       {
@@ -32,5 +33,30 @@ export default defineConfig({
         rewrite: (path) => path.replace(/^\/api/, ""),
       }
     }
-  }
+  },
+  build: {
+    outDir: "dist",
+    assetsDir: "./public",
+    minify: 'terser',
+    rollupOptions: {
+      external: ['vue', 'vue-router', 'axios'],
+      output: {
+        // 配置外部依赖库的 CDN 地址
+        globals: {
+          vue: 'Vue',
+          'vue-router': 'VueRouter',
+          axios: 'axios'
+        },
+        chunkFileNames: 'public/js/[name]-[hash].js',
+        entryFileNames: 'public/js/[name]-[hash].js',
+        assetFileNames: 'public/[ext]/[name]-[hash].[ext]',
+      }
+    },
+    terserOptions: {
+      compress: {
+        drop_console: true,
+        drop_debugger: true,
+      }
+    }
+  },
 })

@@ -1,5 +1,4 @@
 <template>
-
   <div v-touch:left="handleSwipeLeft"
        v-touch:right="handleSwipeRight">
     asdasdas

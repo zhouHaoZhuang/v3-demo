@@ -1,14 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <link rel="icon" href="/favicon.ico">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vite App</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.2.146/pdf.js"></script>
-  </head>
-  <body>
-    <div id="app"></div>
-    <script type="module" src="/src/main.js"></script>
-  </body>
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="https://zhouv.top/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vite App</title>
+  <!--  APlayer -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+  <!-- MetingJS -->
+  <script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+  <!-- 引入外部依赖库的 CDN 地址 -->
+  <!-- <script src="https://cdn.jsdelivr.net/npm/vue@next"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue-router@4"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios@0"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.2.146/pdf.js"></script> -->
+  <style>
+    html {
+      /* font-size: clamp(12px, 1.5vw, 20px); */
+
+      /* font-size: clamp(32px, 10vw, 75px); */
+      /* 适配移动端   不使用 tailwind 的配置*/
+
+      /* font-size: clamp(13.632px, 4.26vw, 31.95px); */
+      /*适配移动端   使用 tailwind 的配置*/
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app"></div>
+  <script type="module" src="/src/main.js"></script>
+</body>
+
 </html>

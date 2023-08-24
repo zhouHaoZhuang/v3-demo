@@ -3,46 +3,25 @@ import { createPinia } from 'pinia'
 
 import App from './App.vue'
 import router from './router'
-import vant from '@/directive/index.js'
+/**
+ * 1.引入全局样式  以下两种方式都可以  直接引入tailwindcss/tailwind.css 是新版写法
+ *    但是注意  内部包含的 base.css  会重置 vant 等三方库的样式
+ */
+
+// import "tailwindcss/tailwind.css"  // 新版写法  全量引入
+import "tailwindcss/components.css"
+import "tailwindcss/utilities.css"
+
+// import './assets/input.css'
 import './assets/main.css'
-
-
-
+import 'animate.css';
+import yltouch from '@/directive/index.js'
+// 完整加载
+import VueLuckyCanvas from '@lucky-canvas/vue'
 const app = createApp(App)
-
-app.directive('touch', {
-  mounted (el, binding) {
-    let startX
-    let startY
-    el.addEventListener('touchstart', function (e) {
-      startX = e.touches[0].clientX
-      startY = e.touches[0].clientY
-    })
-    el.addEventListener('touchend', function (e) {
-      let endX = e.changedTouches[0].clientX
-      let endY = e.changedTouches[0].clientY
-      let direction = getDirection(startX, startY, endX, endY)
-      if (direction === binding.arg) {
-        binding.value && binding.value()
-      }
-    }, false)
-    function getDirection (startX, startY, endX, endY) {
-      let diffX = endX - startX
-      let diffY = endY - startY
-      let absX = Math.abs(diffX)
-      let absY = Math.abs(diffY)
-      let direction = ''
-      if (absX >= absY) {
-        direction = diffX > 0 ? 'right' : 'left'
-      } else {
-        direction = diffY > 0 ? 'down' : 'up'
-      }
-      return direction
-    }
-  }
-})
-app.use(vant)
+yltouch(app)
 app.use(createPinia())
 app.use(router)
+app.use(VueLuckyCanvas)
 
 app.mount('#app')

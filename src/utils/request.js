@@ -5,10 +5,13 @@ let baseURL = import.meta.env.VITE_BASEURL || '' + '/'
 let request = axios.create({
   baseURL,
   timeout: 1000,
+  retry: 3, // 设置重试次数
   headers: {
     'Content-Type': 'application/json',
   } //自定义请求头
 })
+request.defaults.retry = 2;
+request.defaults.retryDelay = 1000;
 // 最大重发次数
 const MAX_ERROR_COUNT = 5;
 // 当前重发次数
@@ -18,16 +21,24 @@ const queue = [];
 // 当前是否刷新状态
 let isRefresh = false;
 
+let isBreak = true
 
 request.interceptors.request.use(
   // 发送请求前做些什么
   (config) => {
-    // console.log('request', config)
-    config.headers.token = '12345'
-    return config
+    console.log('request  请求 成功 拦截器', isBreak, config)
+    // config.headers.token = '12345'
+    if (isBreak) {
+      isBreak = false
+      config.message = '请求中断'
+      return Promise.reject({ config })
+    } else {
+      return config
+    }
   },
   (error) => {
     // 发送请求失败做些什么
+    console.log('error request 请求失败 拦截器', error)
     return Promise.reject(error)
   }
 )
@@ -36,17 +47,41 @@ request.interceptors.response.use(
   // 请求成功做些什么
   // 1000 毫秒后返回结果 的状态码为200的话就返回数据，否则返回错误信息
   async (response) => {
+    console.log('response 响应 成功 拦截器', response)
     // 状态码
     let { statusCode } = response
     // 为了节省多余的代码，这里仅展示处理状态码为401的情况
-    if (statusCode === 401) {
-      refreshToken()
-    }
+    // if (statusCode === 401) {
+    //   refreshToken()
+    // }
     return response.data
   },
   // 请求失败做些什么  超出1000毫秒就返回错误信息
-  (error) => {
-    return Promise.reject(error)
+  (err) => {
+    console.log('error response 响应失败 拦截器', err, err.config)
+    let config = err.config
+    if (!config || !config.retry) return Promise.reject(err)
+    config.__retryCount = config.__retryCount || 0
+    if (config.__retryCount >= config.retry) {
+      return Promise.reject(err)
+    }
+    config.__retryCount += 1
+    let backoff = new Promise(function (resolve) {
+      setTimeout(function () {
+        resolve()
+      }, config.retryDelay || 1)
+    })
+    console.log('重新请求')
+    return backoff.then(function () {
+      console.log('config-a=sd-a=sdasjdaksdjajsdkajshdakjsld', config)
+      let fig = {
+        ...config,
+        headers: {
+          'Content-Type':"application/json"  // 自定义请求头信息   注意：一定要写在这里，否则会覆盖掉原本的请求头信息   这是一个大坑  1.1.3  版本的axios  有这个问题  0.27.2 版本就不用 ？？？ 费解
+        }
+      }
+      return axios(fig)
+    })
   }
 )
 
