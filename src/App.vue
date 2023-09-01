@@ -4,6 +4,9 @@ import Imgs from '@/assets/img'
 import WebImgs from '@/assets/webImg'
 // import { ref } from "vue";  已自动引入
 // import apis from '@/api'
+/* 如果没有显示引入，使用以下方式亦可，推荐显式引入文件 */
+const aImgs = Imgs
+const aWebImgs = WebImgs
 console.log('imgs', Imgs)
 console.log('webImgs', WebImgs)
 function getHomeTheme(params) {
@@ -20,10 +23,10 @@ console.log('a',a)
   <header>
     <div class="wrapper">
       <div class="local-img">
-        <Img :src="Imgs.user.userindex"></Img>
+        <Img :src="aImgs.user.userindex"></Img>
       </div>
       <div class="webimg">
-        <Img :src="WebImgs.yinxin.demotopbg"></Img>
+        <Img :src="aWebImgs.yinxin.demotopbg"></Img>
       </div>
       <van-button type="primary">主要按钮</van-button>
       <Button>asdasd</Button>
