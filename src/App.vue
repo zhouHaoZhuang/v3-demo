@@ -1,5 +1,5 @@
 <script setup>
-/* 注意图片的须显式引入 */
+/* 注意图片的需显式引入 */
 import Imgs from '@/assets/img'
 import WebImgs from '@/assets/webImg'
 // import { ref } from "vue";  已自动引入
