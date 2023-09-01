@@ -9,3 +9,4 @@ for (const path in modules) {
   imgs[mold][name] = modules[path].default
 }
 export default imgs
+export { imgs }

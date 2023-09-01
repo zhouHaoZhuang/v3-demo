@@ -1,26 +1,29 @@
 <script setup>
-import { RouterLink, RouterView } from 'vue-router'
-import apis from './api'
-import imgs from '@/assets/img/index.js'
-import webImgs from '@/assets/webImg'
-
-console.log('imgs', imgs)
-console.log('webImgs', webImgs)
+/* 注意图片的须显式引入 */
+import Imgs from '@/assets/img'
+import WebImgs from '@/assets/webImg'
+// import { ref } from "vue";  已自动引入
+// import apis from '@/api'
+console.log('imgs', Imgs)
+console.log('webImgs', WebImgs)
 function getHomeTheme(params) {
   apis.ansu.getHomeTheme({ name: 'nih' }).then((res) => {
     console.log(res)
   })
 }
+// getHomeTheme()
+const a = ref(0)
+console.log('a',a)
 </script>
 
 <template>
   <header>
     <div class="wrapper">
       <div class="local-img">
-        <Img :src="imgs.user.userindex"></Img>
+        <Img :src="Imgs.user.userindex"></Img>
       </div>
       <div class="webimg">
-        <Img :src="webImgs.yinxin.demotopbg"></Img>
+        <Img :src="WebImgs.yinxin.demotopbg"></Img>
       </div>
       <van-button type="primary">主要按钮</van-button>
       <Button>asdasd</Button>

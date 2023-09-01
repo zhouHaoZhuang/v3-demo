@@ -7,3 +7,4 @@ for (const path in modules) {
 }
 
 export default allModules
+export { allModules }

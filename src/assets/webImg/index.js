@@ -11,3 +11,4 @@ for (const path in modules) {
   });
 }
 export default imgs
+export { imgs }
