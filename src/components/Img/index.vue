@@ -1,12 +1,13 @@
 <template>
   <div>
+    <!-- v-bind="$attrs"  属性透传 -->
     <van-image
       width="100%"
       height="100%"
       :src="src"
       :fit="fit"
-      :round="round"
       v-lazy="src"
+      v-bind="$attrs"
     />
   </div>
 </template>
@@ -19,11 +20,7 @@ defineProps({
   fit: {
     type: String,
     default: 'cover',
-  },
-  round: {
-    type: Boolean,
-    default: false,
-  },
+  }
 })
 </script>
 <style lang="less" scoped></style>
