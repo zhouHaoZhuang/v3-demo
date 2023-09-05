@@ -37,7 +37,7 @@ npm run lint
 
 
 
-项目开发手册
+项目开发指引
   1，路由
     /src/router/routers
      目录下  xxx.js     xxx-----模块名称      内部配置和一般路由配置无异，仅作模块化拆分
