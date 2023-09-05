@@ -54,10 +54,10 @@ npm run lint
       apis.ansu.getHomeTheme()   ausu===模块名称
                                   getHomeTheme====api方法名称
 
-    api + loading 的控制
+    api + loading 的控制  注意：请勿同时使用 全局，局部
       全局loading   { loading：loading }   调用api时 data参数添加上一个 ref类型的  loading 参数即可。   注意：多个api应区分不同的loading
 
-      局部loading   { dom: card_dom.value }  调用api时  data参数添加一个 dom 对象，是为需要挂载的loading 目标   注意使用 nexttick 或者 onMounted 以免访问不到 dom 对象
+      局部loading   { dom: card_dom.value }  调用api时  data参数添加一个 dom 对象，是为需要挂载的loading 目标元素   注意使用 nexttick 或者 onMounted 以免访问不到 dom 对象
   
   
   3，关于组件
@@ -93,8 +93,8 @@ npm run lint
               $Imgs 可直接使用
 
 
-  5，关于其他使用 例如   ref，reactive，useRoute，useRouter ……  等
-     'vue',  'vue-router'  的 hooks 方法，均可直接使用，自动导入处理
+  5，关于其他hooks使用 例如   ref，reactive，useRoute，useRouter ……  等
+     'vue',  'vue-router'  的 hooks 方法，均可直接使用，已做自动导入处理
 
 
  6，views 路由级组件
