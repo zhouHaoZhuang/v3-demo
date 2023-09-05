@@ -10,19 +10,20 @@ const head_dom = ref()
 const card_dom = ref()
 const loading = ref(false)
 const loading1 = ref(false)
-apis.ansu
-  .getHomeTheme({ dom: head_dom.value, loading: loading1 })
-  .then((val) => {
-    console.log('val', val)
-  })
-setTimeout(async () => {
-  apis.ansu.getHomeTheme({ dom: head_dom.value, loading }).then((val)=>{
-    console.log('val----',val)
-  })
-}, 3000)
+// 全局loading 使用
+apis.ansu.getHomeTheme({ loading: loading1 }).then((val) => {
+  console.log('val', val)
+})
+// setTimeout(() => {
+//   apis.ansu.getHomeTheme({ loading }).then((val) => {
+//     console.log('val----', val)
+//   })
+// }, 3000)
 
 onMounted(async () => {
+  // 局部loading使用
   const data2 = await apis.ansu.getHomeHotel({ dom: card_dom.value })
+  console.log('data2',data2)
 })
 </script>
 <style lang="less" scoped></style>

@@ -1,7 +1,8 @@
 import axios from 'axios'
 import { useShowToast,useNoneToast } from "@/hooks/toast.js";
-
+import useAxiosConfig from "@/hooks/myLoading.js";
 export const BASEURL = '/'
+const { setLoading, deleteLoading } = useAxiosConfig()
 let request = axios.create({
   baseURL: BASEURL,
   timeout: 1000,
@@ -19,6 +20,7 @@ request.interceptors.request.use(
       config.loading.value = true
       config.loading = useShowToast()
     }
+    setLoading(config)
     return config
   },
   (error) => {
@@ -34,6 +36,7 @@ request.interceptors.response.use(
       response.config.loading.value = false
       useNoneToast(response.config.loading)
     }
+    deleteLoading(response.config)
     return response.data
   },
   // 请求失败做些什么  超出1000毫秒就返回错误信息
@@ -42,6 +45,7 @@ request.interceptors.response.use(
       config.loading.value = false
       useNoneToast(loading)
     }
+    deleteLoading(error.config)
     return Promise.reject(error)
   }
 )

@@ -15,7 +15,7 @@ export default function () {
       loadingDomInfo.count++
     } else {
       const appExample = createApp(QSpin)
-      const loadingExample = appExample.mount(document.createElement(`div`)) 
+      const loadingExample = appExample.mount(document.createElement(`div`))
       loadingTarget.appendChild(loadingExample.$el)
       loadingExample.show(loadingTarget)
       loadingDom.set(loadingTarget, {
@@ -39,6 +39,6 @@ export default function () {
       }
     }
   }
- 
+
   return { setLoading, deleteLoading }
 }
