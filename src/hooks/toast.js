@@ -1,12 +1,10 @@
-import { Toast } from 'vant';
-Toast.allowMultiple();
-
+import { showLoadingToast, allowMultipleToast } from 'vant';
+allowMultipleToast();
 /**
  * 显示 多个toast 提示
  */
 export function useShowToast () {
-  return Toast.loading({
-    duration: 0,
+  return showLoadingToast({
     message: '加载中...',
     forbidClick: true,
   })
@@ -17,8 +15,7 @@ export function useShowToast () {
  * @param {} Object 单个Toast对象
  */
 export function useNoneToast (toastObj) {
-  toastObj.clear();
-  Toast.resetDefaultOptions();
+  toastObj.close();
 }
 
 
