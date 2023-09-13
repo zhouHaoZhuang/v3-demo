@@ -7,7 +7,9 @@ module.exports = {
     './src/*.vue',
     './src/*.js',
   ],
-  content: [],
+  content: [
+    './src/**/*.{vue,js,ts,jsx,tsx}'
+  ],
   theme: {
     //   screens: {
     //     sm: '480px',

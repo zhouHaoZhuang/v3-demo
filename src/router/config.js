@@ -102,4 +102,20 @@ export default [
       title: 'Tailwind css'
     }
   },
+  {
+    path: '/videojs',
+    name: 'videojs',
+    component: () => import('../views/Video.vue'),
+    meta: {
+      title: 'Videojs 视频播放器'
+    }
+  },
+  {
+    path: '/swiperjs',
+    name: 'swiperjs',
+    component: () => import('../views/Swiper.vue'),
+    meta: {
+      title: 'swiperjs  轮播组件'
+    }
+  },
 ]

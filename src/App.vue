@@ -5,8 +5,7 @@ import Meting from './components/Meting/index.vue'
 import { ref, nextTick } from 'vue'
 import apis from '@/api'
 import routers from '@/router/config.js'
-import { getHomeData } from './api'
-getHomeData({ name: 'nih' }).then((res) => {
+apis.ansu.getHomeData({ name: 'nih' }).then((res) => {
   console.log(res)
 })
 
@@ -24,7 +23,7 @@ const showTouch = ref(false)
 const link = useLink({ to: '/testkeep' })
 // console.log(link, 'kkk')
 
-const unfold = ref(false)
+const unfold = ref(true)
 
 nextTick(() => {
   let dom = document.documentElement
@@ -34,9 +33,9 @@ nextTick(() => {
     //   e.targetTouches[0].pageX,
     //   e.targetTouches[0].pageY
     // )
-    showTouch.value = true
-    top.value = e.targetTouches[0].pageY
-    left.value = e.targetTouches[0].pageX
+    // showTouch.value = true
+    // top.value = e.targetTouches[0].pageY
+    // left.value = e.targetTouches[0].pageX
   })
   dom.addEventListener('touchmove', (e) => {
     // console.log(
@@ -44,8 +43,8 @@ nextTick(() => {
     //   e.targetTouches[0].pageX,
     //   e.targetTouches[0].pageY
     // )
-    top.value = e.targetTouches[0].pageY
-    left.value = e.targetTouches[0].pageX
+    // top.value = e.targetTouches[0].pageY
+    // left.value = e.targetTouches[0].pageX
   })
   dom.addEventListener('touchend', (e) => {
     // console.log('触摸结束事件', e)
@@ -73,6 +72,7 @@ nextTick(() => {
     </transition>
     <Meting />
     <div
+      @mouseleave="unfold = true"
       class="left-box animate__animated"
       :class="{ backOutLeft: unfold, backInLeft: !unfold }"
     >
@@ -86,7 +86,11 @@ nextTick(() => {
           {{ item.meta.title }}
         </li>
       </ul>
-      <div class="icon-box" @click="unfold = !unfold">
+      <div
+        class="icon-box"
+        @click="unfold = !unfold"
+        @mouseenter="unfold = false"
+      >
         <van-icon color="#000" :name="unfold ? 'arrow' : 'arrow-left'" />
       </div>
     </div>
@@ -98,31 +102,7 @@ nextTick(() => {
         <component v-if="!$route.meta.keepAlive" :is="Component" />
       </router-view>
     </div>
-    <header>
-      <img
-        alt="Vue logo"
-        class="logo"
-        src="@/assets/logo.svg"
-        width="125"
-        height="125"
-      />
-      <div class="wrapper">
-        <HelloWorld msg="You did it!" />
-
-        <nav>
-          <RouterLink to="/">Home</RouterLink>
-          <RouterLink to="/about">About</RouterLink>
-          <RouterLink to="/testkeep">testkeep</RouterLink>
-        </nav>
-      </div>
-    </header>
   </div>
-  <router-view v-slot="{ Component }">
-    <keep-alive>
-      <component v-if="$route.meta.keepAlive" :is="Component" />
-    </keep-alive>
-    <component v-if="!$route.meta.keepAlive" :is="Component" />
-  </router-view>
 </template>
 
 <style scoped lang="less">
