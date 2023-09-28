@@ -118,4 +118,12 @@ export default [
       title: 'swiperjs  轮播组件'
     }
   },
+  {
+    path: '/qccode',
+    name: 'qccode',
+    component: () => import('../views/Qccode.vue'),
+    meta: {
+      title: 'qccode解析二维码'
+    }
+  },
 ]

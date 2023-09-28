@@ -9,7 +9,6 @@ import router from './router'
  */
 import vant from '@/directive/index.js'
 
-
 // import "tailwindcss/tailwind.css"  // 新版写法  全量引入
 import "tailwindcss/components.css"
 import "tailwindcss/utilities.css"
