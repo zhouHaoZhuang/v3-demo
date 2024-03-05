@@ -50,7 +50,7 @@ function fenduan(params) {
       console.log(err, 'err 分段下载错误 ')
     })
 }
-fanduanhebing()
+// fanduanhebing()
 /**
  * 分段加载，并合并
  * @param {*} params
@@ -174,7 +174,7 @@ function mergeArrayBuffer(arrays) {
   return res.buffer
 }
 
-/* 
+/*
 
 https://ipinfo.io/42.236.73.60/json
 

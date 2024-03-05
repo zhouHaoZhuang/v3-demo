@@ -5,9 +5,9 @@ import Meting from './components/Meting/index.vue'
 import { ref, nextTick } from 'vue'
 import apis from '@/api'
 import routers from '@/router/config.js'
-apis.ansu.getHomeData({ name: 'nih' }).then((res) => {
-  console.log(res)
-})
+// apis.ansu.getHomeData({ name: 'nih' }).then((res) => {
+//   console.log(res)
+// })
 
 const top = ref(0)
 const left = ref(0)

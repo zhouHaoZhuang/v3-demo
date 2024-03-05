@@ -63,6 +63,14 @@ export default [
     }
   },
   {
+    path: '/axiosaction',
+    name: 'axios操作',
+    component: () => import('../views/axios.vue'),
+    meta: {
+      title: 'axios操作'
+    }
+  },
+  {
     path: '/listscoll',
     name: 'listscoll',
     component: () => import('../views/listScoll.vue'),
